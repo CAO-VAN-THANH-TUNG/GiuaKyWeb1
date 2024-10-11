@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Đặt màu nền cho toàn bộ trang */
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        /* Đặt khoảng cách cho phần chi tiết sản phẩm */
+        .product-details {
+            margin-top: 20px; /* Khoảng cách trên phần chi tiết sản phẩm */
+        }
+        
+        /* Đặt kiểu cho hình ảnh sản phẩm */
+        .product-image {
+            max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của cột */
+            height: auto; /* Đảm bảo chiều cao của hình ảnh tự động điều chỉnh để giữ tỷ lệ */
+            border-radius: 8px; /* Bo tròn các góc của hình ảnh để mềm mại hơn */
+        }
+        
+        /* Đặt kiểu cho tiêu đề sản phẩm */
+        .product-title {
+            font-size: 2rem; /* Kích thước chữ lớn hơn để nổi bật tiêu đề */
+            margin-bottom: 10px; /* Khoảng cách phía dưới tiêu đề */
+        }
+        
+        /* Đặt kiểu cho danh mục sản phẩm */
+        .product-category {
+            font-size: 1.2rem; /* Kích thước chữ vừa phải cho danh mục */
+            color: #6c757d; /* Màu xám nhạt cho danh mục */
+        }
+        
+        /* Đặt kiểu cho mô tả sản phẩm */
+        .product-description {
+            margin-top: 20px; /* Khoảng cách trên mô tả sản phẩm */
+            font-size: 1rem; /* Kích thước chữ cho mô tả sản phẩm */
+            line-height: 1.5; /* Chiều cao dòng để dễ đọc hơn */
+        }
+        
+        /* Đặt kiểu cho các nút */
+        .btn-container {
+            margin-top: 20px; /* Khoảng cách trên nhóm nút */
+        }
+        .btn-container .btn {
+            margin-right: 10px; /* Khoảng cách giữa các nút */
+        }
+        /* Tùy chỉnh màu cho nút "Hẹn hò" */
+        .btn-date-night {
+            background-color: red; /* Màu nền đỏ */
+            color: white; /* Màu chữ trắng */
+        }
+        .btn-date-night:hover {
+            background-color: darkred; /* Màu nền đỏ đậm khi di chuột qua */
+            color: white; /* Màu chữ trắng khi di chuột qua */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container product-details">
+        <div class="row">
+            <div class="col-md-6">
+                <img th:src="@{/images/{filename}(filename=${product.imageFilename})}" alt="Image of [[${product.name}]]" class="product-image">
+            </div>
+            <div class="col-md-6">
+                <h1 class="product-title" th:text="${product.name}">Product Name</h1>
+                <p class="product-category" th:text="${product.category}"></p>
+                <p class="product-description"><strong>CHI TIẾT VỀ CON NGƯỜI </strong><br> <span th:utext="${product.description}"></span></p>
+                <p class="product-brand"><strong>Giới Thiệu:</strong> <span th:text="${product.brand}"></span></p>
+                <p class="product-created-at">
+                    <strong>Created At:</strong> 
+                    <span th:text="${#dates.format(product.createdAt, 'yyyy-MM-dd')}"></span>
+                </p>
+                
+                <!-- Thêm nhóm nút ở đây -->
+                <div class="btn-container">
+                    <a href="/products" class="btn btn-primary">Quay Lại</a>
+                    <a href="/products" class="btn btn-date-night">Bỏ Vào VaLi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
